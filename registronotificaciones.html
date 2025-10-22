@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nueva Notificación</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13a4ec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .form-input-custom, .form-select-custom, .form-textarea-custom {
+        appearance: none;
+        -webkit-appearance: none;
+    }
+    .form-select-custom {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2313a4ec' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+    }
+    .dark .form-select-custom {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23f6f7f8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="max-w-md mx-auto">
+<header class="p-4 flex items-center">
+<button class="p-2 text-gray-800 dark:text-gray-200">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold text-center flex-grow text-gray-900 dark:text-white">Nueva Notificación</h1>
+<div class="w-10"></div> 
+</header>
+<main class="p-4 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="student-name">Nombre del Estudiante</label>
+<input class="w-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-none rounded-lg p-3" id="student-name" readonly="" type="text" value="José Miguel González"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="guardian-name">Nombre del Acudiente</label>
+<input class="w-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-none rounded-lg p-3" id="guardian-name" readonly="" type="text" value="Ana María Rodriguez"/>
+</div>
+</div>
+<form class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="notification-type">Tipo de Notificación</label>
+<select class="form-select-custom w-full bg-white dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg p-3 focus:ring-primary focus:border-primary" id="notification-type">
+<option>Inasistencia por Enfermedad</option>
+<option>Incapacidad Médica</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="start-date">Fecha de Inicio</label>
+<input class="w-full bg-white dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg p-3 focus:ring-primary focus:border-primary" id="start-date" type="date"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="end-date">Fecha de Fin</label>
+<input class="w-full bg-white dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg p-3 focus:ring-primary focus:border-primary" id="end-date" type="date"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="observations">Observaciones</label>
+<textarea class="form-textarea-custom w-full bg-white dark:bg-background-dark border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg p-3 focus:ring-primary focus:border-primary" id="observations" placeholder="Añadir observaciones..." rows="4"></textarea>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="file-upload">Adjuntar Documento</label>
+<div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-700 border-dashed rounded-lg">
+<div class="space-y-1 text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400">cloud_upload</span>
+<div class="flex text-sm text-gray-600 dark:text-gray-400">
+<label class="relative cursor-pointer bg-white dark:bg-background-dark rounded font-medium text-primary hover:text-primary/80 focus-within:outline-none" for="file-upload">
+<span>Sube un archivo</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">o arrastra y suelta</p>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, PDF hasta 10MB</p>
+</div>
+</div>
+</div>
+<div class="pt-6 grid grid-cols-2 gap-4">
+<button class="w-full py-3 px-4 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" type="button">Cancelar</button>
+<button class="w-full py-3 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors" type="submit">Guardar</button>
+</div>
+</form>
+</main>
+</div>
+
+</body></html>

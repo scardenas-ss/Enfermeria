@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sistema de Notificaciones</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+    </style>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #13a4ec;
+            --background-light: #f7fafc;
+            --background-dark: #1a202c;
+            --card-light: #ffffff;
+            --card-dark: #2d3748;
+            --text-light: #1a202c;
+            --text-dark: #e2e8f0;
+            --text-muted-light: #718096;
+            --text-muted-dark: #a0aec0;
+            --accent-blue: #e0f2fe;
+            --accent-green: #e6fffa;
+            --accent-red: #fee2e2;
+            --accent-yellow: #fef9c3;
+            --accent-orange: #fff7ed;
+            --accent-purple: #f3e8ff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+        .dark body {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+        .bg-accent-blue {
+            background-color: var(--accent-blue);
+        }
+        .bg-accent-green {
+            background-color: var(--accent-green);
+        }
+        .bg-accent-red {
+            background-color: var(--accent-red);
+        }
+        .bg-accent-yellow {
+            background-color: var(--accent-yellow);
+        }
+        .bg-accent-orange {
+            background-color: var(--accent-orange);
+        }
+        .bg-accent-purple {
+            background-color: var(--accent-purple);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="dark:bg-background-dark pb-28">
+<div class="relative flex h-auto min-h-screen w-full flex-col justify-between overflow-x-hidden">
+<div class="flex-grow">
+<header class="p-4 flex items-center justify-between relative bg-white dark:bg-card-dark shadow-sm">
+<button class="text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</button>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="flex flex-col items-center">
+<img alt="Logo del Colegio José Ortega y Gasset" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsyP13uIuCTTxWeJ86NokVkso11fCyallZc_fDceyQkFYRRp0MNRchnHwDYDLps3VTDNw2ep6_OkTSSY_6loVA_LwlnEBZxy5qF9RPRzYJCF-PXcglCuvBXJ6Kg5b6r8aJsJK76nkLcTYv629OLvurw_gMl2UsdUm8YjTbI-QwpF1aFQezUihcTgQ6vbeIzRrE3rSWhDOkqP-Je7VXPh-ShdRThpgzTm-1YG-SXTib7I1pMPkH2FBzRUNoHttKyQzx77yYHSt6DA"/>
+<h1 class="text-lg font-bold text-gray-900 dark:text-white mt-1">Historial de Notificaciones</h1>
+</div>
+</div>
+<button class="text-gray-600 dark:text-gray-300 relative z-10">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</header>
+<main class="px-4 py-6">
+<div class="space-y-4">
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-red p-3 rounded-full">
+<span class="material-symbols-outlined text-red-500">emergency</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Emergencia</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Hoy, 10:30 AM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Estudiante: Ana Pérez</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">Se contactó al acudiente por posible fractura. Se recomienda traslado a centro médico.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-orange p-3 rounded-full">
+<span class="material-symbols-outlined text-orange-500">sick</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Inasistencia por Enfermedad</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Hoy, 08:15 AM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Estudiante: Juan Rodríguez</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">Acudiente reporta inasistencia del estudiante por cuadro gripal. Se recomienda reposo.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-green p-3 rounded-full">
+<span class="material-symbols-outlined text-green-500">sentiment_satisfied</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Estado de Salud</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ayer, 02:15 PM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Estudiante: Carlos Ruiz</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">El estudiante se encuentra estable tras malestar y ha regresado a sus clases.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-purple p-3 rounded-full">
+<span class="material-symbols-outlined text-purple-500">healing</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Incapacidad Médica</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ayer, 09:40 AM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Estudiante: María López</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">Se recibe incapacidad médica por 3 días por amigdalitis. Regresa el 27/05.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-blue p-3 rounded-full">
+<span class="material-symbols-outlined text-blue-500">medical_services</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Cita Médica</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">23/05, 09:00 AM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Estudiante: Sofía Gómez</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">Recordatorio de cita médica programada para control de alergias.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-md">
+<div class="flex items-start gap-4">
+<div class="bg-accent-yellow p-3 rounded-full">
+<span class="material-symbols-outlined text-yellow-500">vaccines</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center">
+<p class="font-bold text-gray-800 dark:text-white">Jornada de Vacunación</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">22/05, 11:45 AM</p>
+</div>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">General</p>
+<p class="text-sm text-text-light dark:text-text-dark mt-2">Se informa sobre la próxima jornada de vacunación en el colegio.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed bottom-20 right-4">
+<a class="bg-[var(--primary-color)] text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2" href="registronotificaciones.html">
+<span class="material-symbols-outlined">add</span>
+                Registrar
+</a>
+</div>
+<footer class="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-card-dark p-2 fixed bottom-0 w-full">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-[var(--primary-color)] dark:hover:text-[var(--primary-color)] transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-medium">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-[var(--primary-color)] dark:hover:text-[var(--primary-color)] transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-xs font-medium">Registros</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--primary-color)]" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="text-xs font-medium">Notificaciones</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-[var(--primary-color)] dark:hover:text-[var(--primary-color)] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-medium">Perfil</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

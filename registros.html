@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-background-light dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center justify-between p-4">
+<button class="flex items-center justify-center w-10 h-10 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined">
+                        arrow_back
+                    </span>
+</button>
+<h1 class="text-lg font-bold text-center text-slate-900 dark:text-white flex-1">Registros</h1>
+<div class="w-10"></div>
+</div>
+<div class="border-b border-slate-200 dark:border-slate-800">
+<nav class="flex px-4 overflow-x-auto">
+<a class="flex-1 py-3 text-sm font-bold text-center text-primary border-b-2 border-primary" href="#">Todos</a>
+<a class="flex-1 py-3 text-sm font-bold text-center text-slate-500 dark:text-slate-400" href="#">Fecha</a>
+<a class="flex-1 py-3 text-sm font-bold text-center text-slate-500 dark:text-slate-400" href="#">Curso</a>
+<a class="flex-1 py-3 text-sm font-bold text-center text-slate-500 dark:text-slate-400" href="#">Tipo</a>
+</nav>
+</div>
+</header>
+<main class="flex-1 px-4 py-4 space-y-4">
+<div class="flex items-center p-3 rounded-lg bg-white dark:bg-slate-900/50">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">
+                       person
+                     </span>
+</div>
+<div class="ml-4">
+<p class="font-semibold text-slate-900 dark:text-white">Atención a estudiante</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">2024-07-26</p>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg bg-white dark:bg-slate-900/50">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">
+                       person
+                     </span>
+</div>
+<div class="ml-4">
+<p class="font-semibold text-slate-900 dark:text-white">Atención a estudiante</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">2024-07-25</p>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg bg-white dark:bg-slate-900/50">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">
+                       person
+                     </span>
+</div>
+<div class="ml-4">
+<p class="font-semibold text-slate-900 dark:text-white">Atención a estudiante</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">2024-07-24</p>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg bg-white dark:bg-slate-900/50">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">
+                        person
+                    </span>
+</div>
+<div class="ml-4">
+<p class="font-semibold text-slate-900 dark:text-white">Atención a estudiante</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">2024-07-23</p>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg bg-white dark:bg-slate-900/50">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">
+                        person
+                    </span>
+</div>
+<div class="ml-4">
+<p class="font-semibold text-slate-900 dark:text-white">Atención a estudiante</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">2024-07-22</p>
+</div>
+</div>
+</main>
+<footer class="border-t border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-2">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-primary" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-medium">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="registros.html">
+<span class="material-symbols-outlined">description</span>
+<span class="text-xs font-medium">Registros</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="notificaciones.html">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-xs font-medium">Alertas</span>
+</a>
+</nav>
+</footer>
+</div>
+</body></html>

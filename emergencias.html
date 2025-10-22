@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Emergencias ARL</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#13a4ec',
+              'background-light': '#f6f7f8',
+              'background-dark': '#101c22',
+              'water-green': 'rgba(178, 223, 219, 0.3)'
+            },
+            fontFamily: {
+              display: ['Inter'],
+            },
+            borderRadius: { DEFAULT: '0.5rem', lg: '1rem', xl: '1.5rem', full: '9999px' },
+          },
+        },
+      };
+    </script>
+<style>
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2313a4ec' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col justify-between">
+<div class="flex-grow">
+<header class="flex items-center p-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-black dark:text-white">
+<span class="material-symbols-outlined"> arrow_back </span>
+</button>
+<h1 class="flex-1 text-center text-lg font-bold text-black dark:text-white pr-10">Gestión de Emergencias ARL</h1>
+</header>
+<main class="p-4 space-y-4">
+<div class="p-4 rounded-lg bg-water-green dark:bg-primary/20 text-center space-y-2">
+<span class="material-symbols-outlined text-primary text-4xl">nfc</span>
+<p class="text-sm text-black/80 dark:text-white/80">Datos del estudiante cargados mediante NFC/QR.</p>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="student-name">Nombre del estudiante</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="student-name" placeholder="Ej. Juan Pérez" type="text" value="Juan Pérez"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="course">Curso</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="course" placeholder="Ej. 5º A" type="text" value="5º A"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="guardian-name">Nombre del acudiente</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="guardian-name" type="text" value="Maria Rodriguez"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="guardian-phone">Teléfono del acudiente</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="guardian-phone" type="text" value="3001234567"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="date">Fecha</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="date" type="text" value="23/05/2024"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="time">Hora</label>
+<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="time" type="text" value="10:30 AM"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="emergency-type">Tipo de Emergencia</label>
+<select class="w-full appearance-none form-select rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black dark:text-white focus:ring-2 focus:ring-inset focus:ring-primary h-14" id="emergency-type">
+<option>Seleccionar tipo</option>
+<option>Caída</option>
+<option>Golpe</option>
+<option>Reacción alérgica</option>
+<option>Otro</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-black/60 dark:text-white/60" for="observations">Observaciones de la Emergencia</label>
+<textarea class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:ring-2 focus:ring-inset focus:ring-primary min-h-36 resize-none" id="observations" placeholder="Añadir observaciones sobre la emergencia..."></textarea>
+</div>
+<div class="p-4 rounded-lg bg-blue-100/50 dark:bg-primary/20 space-y-2">
+<h3 class="text-sm font-bold text-black/80 dark:text-white/80">Procedimiento de Atención ARL</h3>
+<p class="text-sm text-black/60 dark:text-white/60">En caso de emergencia, contactar a la ARL al número 01 8000 123 456. Indicar el código del colegio 98765. Para más información, consulte el manual de emergencias.</p>
+</div>
+</main>
+</div>
+<footer class="border-t border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-2">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-primary" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-medium">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="registros.html">
+<span class="material-symbols-outlined">description</span>
+<span class="text-xs font-medium">Registros</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="notificaciones.html">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-xs font-medium">Alertas</span>
+</a>
+</nav>
+</footer>
+</div>
+</body></html>
