@@ -1,135 +1,616 @@
 <!DOCTYPE html>
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gestión de Emergencias ARL</title>
-<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Acta Notificación de Accidentes - Colegio José Ortega y Gasset</title>
+
+<!-- Diseño moderno (estilo app médica) -->
+<style>
+  :root{
+    --primary:#0f6fbf;
+    --accent:#13a4ec;
+    --bg:#f3f7fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --border:#e6eef8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, #f7fbfe 0%, var(--bg) 100%);
+    color:#0b2540;
+    padding:28px;
+  }
+  .container{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  header.app-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  .logo-wrap{
+    width:84px;
+    height:84px;
+    background:linear-gradient(180deg, #fff, #fbfdff);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 8px 24px rgba(12,45,90,0.06);
+    border:1px solid rgba(15,111,191,0.08);
+    padding:8px;
+  }
+  .logo-wrap img{ max-width:100%; max-height:100%; display:block; object-fit:contain; border-radius:6px; }
+
+  .title-block{
+    flex:1;
+    text-align:center;
+  }
+  .title-block h1{
+    margin:0;
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:0.6px;
+    color:var(--primary);
+  }
+  .title-block p{
+    margin:4px 0 0;
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+  }
+
+  main.card{
+    background:var(--card);
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 12px 30px rgba(12,45,90,0.06);
+    border:1px solid var(--border);
+  }
+
+  .section{
+    margin-bottom:18px;
+  }
+  .section .hdr{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .chip{
+    background:linear-gradient(90deg,var(--accent),var(--primary));
+    color:white;
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:13px;
+    box-shadow:0 6px 18px rgba(19,164,236,0.12);
+  }
+  .section h2{
+    margin:0;
+    font-size:15px;
+    color:#083058;
+    font-weight:700;
+  }
+
+  .grid{
+    display:grid;
+    gap:12px;
+  }
+  .grid.cols-2{ grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-3{ grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4{ grid-template-columns: repeat(4, 1fr); }
+
+  label{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px; font-weight:600; }
+  input[type="text"], input[type="number"], input[type="date"], input[type="time"], select, textarea{
+    width:100%;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid #e3eefb;
+    background:#fbfeff;
+    font-size:14px;
+    color:#083058;
+    outline:none;
+    transition: box-shadow .18s ease, border-color .18s ease;
+  }
+  input:focus, select:focus, textarea:focus{
+    box-shadow:0 8px 20px rgba(6,86,146,0.12);
+    border-color:var(--accent);
+    background:white;
+  }
+  textarea{ min-height:92px; resize:vertical; }
+
+  .muted-help{ font-size:12px; color:var(--muted); margin-top:6px; }
+
+  .btn-row{ display:flex; justify-content:flex-end; gap:12px; margin-top:14px; align-items:center; }
+  .btn{
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 10px 22px rgba(6,86,146,0.14);
+  }
+  .btn.secondary{ background:#f1f7fb; color:var(--primary); border:1px solid #dceefb; box-shadow:none; font-weight:700; }
+
+  footer.small{ margin-top:16px; text-align:center; color:var(--muted); font-size:12px; }
+
+  @media (max-width:880px){
+    .grid.cols-4{ grid-template-columns: repeat(2,1fr); }
+    .grid.cols-3{ grid-template-columns: repeat(2,1fr); }
+    .grid.cols-2{ grid-template-columns: 1fr; }
+    header.app-header{ flex-direction:column; gap:8px; align-items:center; }
+    .title-block{text-align:center;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header con logo + título -->
+  <header class="app-header" role="banner">
+    <div class="logo-wrap" title="Logo Colegio">
+      <!-- Coloca tu logo en assets/logo.png -->
+      <img id="page-logo" src="assets/logo.png" alt="Logo Colegio" />
+    </div>
+    <div class="title-block">
+      <h1>COLEGIO JOSÉ ORTEGA Y GASSET</h1>
+      <p>ACTA DE NOTIFICACIÓN DE ACCIDENTES ESCOLARES</p>
+    </div>
+    <div style="width:84px"></div>
+  </header>
+
+  <main class="card" role="main">
+
+    <!-- Sección 1: identificación -->
+    <section class="section">
+      <div class="hdr">
+        <div class="chip">1</div>
+        <h2>Identificación del estudiante accidentado</h2>
+      </div>
+
+      <div class="grid cols-4">
+        <div>
+          <label>Nombre y apellidos</label>
+          <input id="student-name" type="text" placeholder="Ej. Juan Pérez">
+        </div>
+        <div>
+          <label>Tipo de identificación</label>
+          <select id="id-type"><option>TI</option><option>RC</option><option>CC</option><option>OTRO</option></select>
+        </div>
+        <div>
+          <label>No. de identificación</label>
+          <input id="id-number" type="text">
+        </div>
+        <div>
+          <label>Edad (años)</label>
+          <input id="age" type="number" min="0">
+        </div>
+
+        <div>
+          <label>Curso</label>
+          <input id="course" type="text">
+        </div>
+        <div>
+          <label>Póliza / Seguro estudiantil</label>
+          <input id="policy" type="text" placeholder="Número o póliza">
+        </div>
+        <div>
+          <label>Parentesco</label>
+          <input id="parentesco" type="text" placeholder="Ej. Madre / Padre / Tío">
+        </div>
+        <div>
+          <label>Aseguradora</label>
+          <input id="aseguradora" type="text" placeholder="Nombre aseguradora">
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: persona que atiende -->
+    <section class="section">
+      <div class="hdr">
+        <div class="chip">2</div><h2>Persona que atiende el accidente</h2>
+      </div>
+      <div class="grid cols-3">
+        <div>
+          <label>Persona que atiende</label>
+          <select id="person-attends">
+            <option>Docente</option><option>Coordinador(a)</option><option>Rector(a)</option>
+            <option>Orientador(a)</option><option>Profesional de la salud</option><option>Estudiante</option>
+            <option>Líder de ruta</option><option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label>Nombre quien atiende (si aplica)</label>
+          <input id="person-attends-name" type="text">
+        </div>
+        <div>
+          <label>Teléfono contacto</label>
+          <input id="person-attends-phone" type="text" placeholder="Opcional">
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: detalles del accidente -->
+    <section class="section">
+      <div class="hdr"><div class="chip">3</div><h2>Detalles del accidente</h2></div>
+
+      <div class="grid cols-4">
+        <div>
+          <label>Fecha</label>
+          <input id="date" type="date">
+        </div>
+        <div>
+          <label>Hora</label>
+          <input id="time" type="time">
+        </div>
+        <div>
+          <label>Minutos (opcional)</label>
+          <input id="minutes" type="number" min="0">
+        </div>
+        <div>
+          <label>No. de ruta (si aplica)</label>
+          <input id="route-number" type="text">
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-top:12px">
+        <div>
+          <label>Lugar del accidente</label>
+          <select id="place-accident">
+            <option>Colegio</option><option>Calle</option><option>Casa</option><option>Ruta Escolar</option><option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label>Lugar de atención del accidente</label>
+          <select id="place-attention">
+            <option>Enfermería</option><option>Salón de clases</option><option>Patio</option>
+            <option>Pasillo</option><option>Escaleras</option><option>Vía pública</option><option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label>Intencionalidad</label>
+          <select id="intentionality"><option>Intencional</option><option>No intencional</option><option>Autoinfringido</option></select>
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-top:12px">
+        <div>
+          <label>Actividad que estaba realizando</label>
+          <select id="activity">
+            <option>Practicando deporte</option><option>Viajando/Transportándose</option><option>Peleando</option>
+            <option>Estudiando</option><option>Recreación/Descansando/Jugando</option><option>Montando bicicleta</option><option>Otra</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Mecanismo del accidente</label>
+          <select id="mechanism">
+            <!-- 18 opciones -->
+            <option>Accidentalidad vial</option>
+            <option>Caída a propia altura</option>
+            <option>Caída de altura</option>
+            <option>Caída de escaleras</option>
+            <option>Golpe/Fuerza contundente</option>
+            <option>Corte/Punzada</option>
+            <option>Disparo con arma de fuego</option>
+            <option>Fuego/Llama/Quemadura</option>
+            <option>Líquido/Exposición química</option>
+            <option>Proyección de objeto / Cuerpo extraño</option>
+            <option>Pete/Explosión/Pirotecnia</option>
+            <option>Estrangulado/Ahorcado</option>
+            <option>Inmersión/Ahogado</option>
+            <option>Asfixia por cuerpo extraño</option>
+            <option>Electricidad</option>
+            <option>Intoxicación</option>
+            <option>Mordedura/Herida por animal</option>
+            <option>Otro mecanismo</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Naturaleza de la lesión</label>
+          <select id="injury-nature">
+            <option>Fractura</option><option>Contusión</option><option>Herida abierta</option>
+            <option>Luxación</option><option>Lesión superficial</option><option>Quemadura</option><option>Otra</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label>Parte del cuerpo afectada</label>
+        <select id="body-part">
+            <option>Cráneo</option><option>Ojos</option><option>Facial/Nariz/Oídos</option>
+            <option>Cuello</option><option>Tórax</option><option>Abdomen</option>
+            <option>Columna</option><option>Pelvis/Genitales</option><option>Miembros superiores</option>
+            <option>Miembros inferiores</option><option>Manos/Dedos</option><option>Pies</option><option>Otra</option>
+        </select>
+      </div>
+
+    </section>
+
+    <!-- Sección 4: descripción / acciones / remisión -->
+    <section class="section">
+      <div class="hdr"><div class="chip">4</div><h2>Descripción / Acciones / Remisión</h2></div>
+
+      <label>Descripción del accidente</label>
+      <textarea id="description"></textarea>
+
+      <label style="margin-top:10px">Acciones adelantadas por el colegio</label>
+      <textarea id="actions"></textarea>
+
+      <label style="margin-top:10px">Detalles de la remisión al servicio de la póliza estudiantil</label>
+      <textarea id="remission-details"></textarea>
+    </section>
+
+    <!-- Sección 5: datos de quien acompaña al estudiante al servicio de la póliza -->
+    <section class="section">
+      <div class="hdr"><div class="chip">5</div><h2>Datos de quien acompaña al estudiante (póliza)</h2></div>
+
+      <div class="grid cols-3">
+        <div>
+          <label>Nombre</label>
+          <input id="accompany-name" type="text">
+        </div>
+        <div>
+          <label>Vínculo con el estudiante</label>
+          <input id="accompany-relation" type="text">
+        </div>
+        <div>
+          <label>Teléfono de contacto</label>
+          <input id="accompany-phone" type="text">
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-top:12px">
+        <div>
+          <label>Documento (C.C. / Otro)</label>
+          <input id="accompany-id" type="text">
+        </div>
+        <div>
+          <label>¿Padre o acudiente?</label>
+          <select id="accompany-is-parent">
+            <option>Sí</option><option>No</option>
+          </select>
+        </div>
+        <div>
+          <label>Observaciones</label>
+          <input id="accompany-observations" type="text" placeholder="Opcional">
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección finales: firma y generar -->
+    <section class="section">
+      <div class="hdr"><div class="chip">6</div><h2>Firmas</h2></div>
+
+      <div class="grid cols-2">
+        <div>
+          <label>Nombre del padre o acudiente</label>
+          <input id="parent-name" type="text">
+        </div>
+        <div>
+          <label>C.C. del padre o acudiente</label>
+          <input id="parent-id" type="text">
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="muted-help">Las líneas de firma aparecerán en el PDF hasta donde muestra la imagen original.</div>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button id="preview-pdf" class="btn secondary" type="button">Vista previa</button>
+        <button id="generate-pdf" class="btn" type="button">🧾 Generar PDF</button>
+      </div>
+    </section>
+
+    <footer class="small">Sistema de Gestión de Emergencias — Colegio José Ortega y Gasset</footer>
+  </main>
+</div>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              primary: '#13a4ec',
-              'background-light': '#f6f7f8',
-              'background-dark': '#101c22',
-              'water-green': 'rgba(178, 223, 219, 0.3)'
-            },
-            fontFamily: {
-              display: ['Inter'],
-            },
-            borderRadius: { DEFAULT: '0.5rem', lg: '1rem', xl: '1.5rem', full: '9999px' },
-          },
-        },
+(function(){
+  const logoSrc = 'assets/logo.png'; // coloca tu logo en esta ruta
+  const pageLogo = document.getElementById('page-logo');
+  // si logo no carga, no rompe la app (mostrar alt)
+  pageLogo.onerror = ()=> pageLogo.style.display='none';
+
+  // util para leer campo
+  const val = id => (document.getElementById(id)?.value || '').toString().trim();
+
+  // texto envuelto en jsPDF con ancho en mm
+  function addWrappedText(doc, text, x, y, maxWidth, lineHeight){
+    const lines = doc.splitTextToSize(text, maxWidth);
+    doc.text(lines, x, y);
+    return lines.length * lineHeight;
+  }
+
+  async function loadImageAsDataURL(src){
+    return new Promise((resolve)=>{
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function(){
+        // draw into canvas to get dataURL
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img,0,0);
+        try{
+          const dataURL = canvas.toDataURL('image/png');
+          resolve(dataURL);
+        }catch(e){
+          resolve(null);
+        }
       };
-    </script>
-<style>
-      .form-select {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2313a4ec' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-        background-position: right 0.5rem center;
-        background-repeat: no-repeat;
-        background-size: 1.5em 1.5em;
-        padding-right: 2.5rem;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+      img.onerror = ()=> resolve(null);
+      img.src = src;
+    });
+  }
+
+  async function createPDF({ previewOnly=false } = {}){
+    try{
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit:'mm', format:'a4' }); // A4 vertical
+      const pageWidth = doc.internal.pageSize.getWidth(); // ~210
+      let cursorY = 18;
+
+      // cargar logo (si existe)
+      const logoData = await loadImageAsDataURL(logoSrc);
+
+      // Encabezado: logo izquierdo + título centrado
+      if(logoData){
+        const logoWmm = 26; const logoHmm = 26;
+        doc.addImage(logoData, 'PNG', 14, 10, logoWmm, logoHmm);
       }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(14);
+      doc.text('COLEGIO JOSÉ ORTEGA Y GASSET', pageWidth/2, 12, { align:'center' });
+      doc.setFontSize(11);
+      doc.text('ACTA DE NOTIFICACIÓN DE ACCIDENTES ESCOLARES', pageWidth/2, 18, { align:'center' });
+
+      // línea separadora
+      doc.setDrawColor(180);
+      doc.setLineWidth(0.5);
+      doc.line(12, 22, pageWidth-12, 22);
+      cursorY = 26;
+
+      // ---- Sección: Identificación ----
+      doc.setFontSize(10);
+      doc.setFont('helvetica','bold');
+      doc.text('1. IDENTIFICACIÓN DEL ESTUDIANTE ACCIDENTADO', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+
+      const sName = val('student-name');
+      const idType = val('id-type');
+      const idNum = val('id-number');
+      const age = val('age');
+      const course = val('course');
+      const policy = val('policy');
+      const parentesco = val('parentesco');
+      const aseguradora = val('aseguradora');
+
+      doc.text(`Nombres y apellidos: ${sName}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Tipo ID: ${idType}    No. ID: ${idNum}    Edad: ${age}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Curso: ${course}    Póliza: ${policy}    Aseguradora: ${aseguradora}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Parentesco: ${parentesco}`, 12, cursorY);
+      cursorY += 9;
+
+      // ---- Persona que atiende ----
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('2. PERSONA QUE ATIENDE EL ACCIDENTE', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      doc.text(`Cargo: ${val('person-attends')}    Nombre: ${val('person-attends-name')}    Teléfono: ${val('person-attends-phone')}`, 12, cursorY);
+      cursorY += 9;
+
+      // ---- Detalles del accidente ----
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('3. DETALLES DEL ACCIDENTE', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+
+      const date = val('date');
+      const time = val('time');
+      const minutes = val('minutes');
+      doc.text(`Fecha: ${date}   Hora: ${time} ${minutes?('('+minutes+' min)'):''}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Lugar del accidente: ${val('place-accident')}    Lugar de atención: ${val('place-attention')}    No. ruta: ${val('route-number')}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Intencionalidad: ${val('intentionality')}    Actividad: ${val('activity')}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Mecanismo: ${val('mechanism')}    Naturaleza lesión: ${val('injury-nature')}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Parte del cuerpo afectada: ${val('body-part')}`, 12, cursorY);
+      cursorY += 8;
+
+      // ---- Descripción ----
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('4. DESCRIPCIÓN DEL ACCIDENTE', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      cursorY += addWrappedText(doc, val('description') || 'No registra descripción.', 12, cursorY, pageWidth-24, 5.5);
+
+      // ---- Acciones ----
+      cursorY += 6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('5. ACCIONES ADELANTADAS POR EL COLEGIO', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      cursorY += addWrappedText(doc, val('actions') || 'No registra acciones.', 12, cursorY, pageWidth-24, 5.5);
+
+      // ---- Remisión ----
+      cursorY += 6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('6. DETALLES DE LA REMISIÓN AL SERVICIO DE LA PÓLIZA', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      cursorY += addWrappedText(doc, val('remission-details') || 'Sin remisión registrada.', 12, cursorY, pageWidth-24, 5.5);
+
+      // ---- Datos quien acompaña al servicio de la póliza ----
+      cursorY += 8;
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('7. DATOS DE QUIEN ACOMPAÑA AL ESTUDIANTE (PÓLIZA)', 12, cursorY);
+      cursorY += 6;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      doc.text(`Nombre: ${val('accompany-name')}    Vínculo: ${val('accompany-relation')}    Tel: ${val('accompany-phone')}`, 12, cursorY);
+      cursorY += 5;
+      doc.text(`Documento: ${val('accompany-id')}    Padre o acudiente: ${val('accompany-is-parent')}    Observaciones: ${val('accompany-observations')}`, 12, cursorY);
+      cursorY += 9;
+
+      // ---- Firmas ----
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('8. FIRMAS', 12, cursorY);
+      cursorY += 8;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+
+      // Draw signature lines approx positions
+      const leftX = 18, rightX = pageWidth/2 + 20;
+      doc.line(leftX, cursorY+14, leftX+80, cursorY+14); // left line
+      doc.line(rightX, cursorY+14, rightX+80, cursorY+14); // right line
+      doc.text(`Firma del padre o acudiente: ${val('parent-name') || val('parent-name')}`, leftX, cursorY+20);
+      doc.text(`Firma de quien reporta: ${val('nombre_reporta')}`, rightX, cursorY+20);
+      cursorY += 30;
+
+      // Pie
+      doc.setFontSize(8);
+      doc.setTextColor(120);
+      doc.text('Documento generado por el sistema de Gestión de Emergencias — Colegio José Ortega y Gasset', pageWidth/2, 288, { align:'center' });
+
+      if(previewOnly){
+        // abrir en nueva ventana como blob
+        const blob = doc.output('bloburl');
+        window.open(blob);
+      } else {
+        // Guardar archivo (sanitize name)
+        const student = (val('student-name') || 'estudiante').replace(/\s+/g,'_').replace(/[^\w\-_.]/g,'');
+        doc.save(`Acta_Accidente_${student}.pdf`);
+      }
+    }catch(err){
+      console.error('Error generando PDF', err);
+      alert('Ocurrió un error al generar el PDF. Revisa la consola.');
     }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="font-display bg-background-light dark:bg-background-dark">
-<div class="relative flex h-auto min-h-screen w-full flex-col justify-between">
-<div class="flex-grow">
-<header class="flex items-center p-4">
-<button class="flex h-10 w-10 items-center justify-center rounded-full text-black dark:text-white">
-<span class="material-symbols-outlined"> arrow_back </span>
-</button>
-<h1 class="flex-1 text-center text-lg font-bold text-black dark:text-white pr-10">Gestión de Emergencias ARL</h1>
-</header>
-<main class="p-4 space-y-4">
-<div class="p-4 rounded-lg bg-water-green dark:bg-primary/20 text-center space-y-2">
-<span class="material-symbols-outlined text-primary text-4xl">nfc</span>
-<p class="text-sm text-black/80 dark:text-white/80">Datos del estudiante cargados mediante NFC/QR.</p>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="student-name">Nombre del estudiante</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="student-name" placeholder="Ej. Juan Pérez" type="text" value="Juan Pérez"/>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="course">Curso</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="course" placeholder="Ej. 5º A" type="text" value="5º A"/>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="guardian-name">Nombre del acudiente</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="guardian-name" type="text" value="Maria Rodriguez"/>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="guardian-phone">Teléfono del acudiente</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="guardian-phone" type="text" value="3001234567"/>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="date">Fecha</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="date" type="text" value="23/05/2024"/>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="time">Hora</label>
-<input class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black/50 dark:text-white/50 h-14" disabled="" id="time" type="text" value="10:30 AM"/>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="emergency-type">Tipo de Emergencia</label>
-<select class="w-full appearance-none form-select rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black dark:text-white focus:ring-2 focus:ring-inset focus:ring-primary h-14" id="emergency-type">
-<option>Seleccionar tipo</option>
-<option>Caída</option>
-<option>Golpe</option>
-<option>Reacción alérgica</option>
-<option>Otro</option>
-</select>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-medium text-black/60 dark:text-white/60" for="observations">Observaciones de la Emergencia</label>
-<textarea class="w-full rounded border-0 bg-background-light/50 dark:bg-background-dark/50 text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:ring-2 focus:ring-inset focus:ring-primary min-h-36 resize-none" id="observations" placeholder="Añadir observaciones sobre la emergencia..."></textarea>
-</div>
-<div class="p-4 rounded-lg bg-blue-100/50 dark:bg-primary/20 space-y-2">
-<h3 class="text-sm font-bold text-black/80 dark:text-white/80">Procedimiento de Atención ARL</h3>
-<p class="text-sm text-black/60 dark:text-white/60">En caso de emergencia, contactar a la ARL al número 01 8000 123 456. Indicar el código del colegio 98765. Para más información, consulte el manual de emergencias.</p>
-</div>
-</main>
-</div>
-<footer class="border-t border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-2">
-<nav class="flex justify-around">
-<a class="flex flex-col items-center gap-1 text-primary" href="index.html">
-<span class="material-symbols-outlined">home</span>
-<span class="text-xs font-medium">Inicio</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="registros.html">
-<span class="material-symbols-outlined">description</span>
-<span class="text-xs font-medium">Registros</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="notificaciones.html">
-<span class="material-symbols-outlined">notifications</span>
-<span class="text-xs font-medium">Alertas</span>
-</a>
-</nav>
-</footer>
-</div>
-</body></html>
+  }
+
+  // eventos UI
+  document.getElementById('generate-pdf').addEventListener('click', ()=> createPDF({ previewOnly:false }));
+  document.getElementById('preview-pdf').addEventListener('click', ()=> createPDF({ previewOnly:true }));
+
+})();
+</script>
+</body>
+</html>
